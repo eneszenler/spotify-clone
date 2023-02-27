@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode:"jit", 
-  purge: [
-    './public/index.html',
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
+  mode: "jit",
+  purge: ["./public/index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   content: [],
   theme: {
     extend: {
@@ -13,12 +10,12 @@ module.exports = {
         primary: "#1db954",
         active: "#282828",
         link: "#b3b3b3",
-        footer: "#181818"
+        footer: "#181818",
       },
       fontSize: {
-        s: "0.813rem"
-      }
+        s: "0.813rem",
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/aspect-ratio"), require("@tailwindcss/line-clamp")],
+};
