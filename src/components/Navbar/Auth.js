@@ -24,7 +24,7 @@ const Auth = () => {
               <Icon name="downDir" size={16} />
             </span>
           </Menu.Button>
-          <Menu.Items className={"absolute p-1 top-full right-0 bg-active w-48 rounded translate-y-2"}>
+          <Menu.Items className={"absolute p-1 top-full right-0 bg-active w-48 rounded translate-y-2 z-10"}>
             <Menu.Item>
               {({active}) => (
                 <Link

@@ -610,6 +610,10 @@ html, body, #root {
   top: 100%;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -655,6 +659,10 @@ html, body, #root {
   display: none;
 }
 
+.h-1 {
+  height: 0.25rem;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -667,8 +675,16 @@ html, body, #root {
   height: 6rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-6 {
   height: 1.5rem;
+}
+
+.h-7 {
+  height: 1.75rem;
 }
 
 .h-8 {
@@ -683,20 +699,12 @@ html, body, #root {
   height: 100%;
 }
 
-.h-3 {
-  height: 0.75rem;
-}
-
-.h-1 {
-  height: 0.25rem;
-}
-
-.h-7 {
-  height: 1.75rem;
-}
-
 .w-12 {
   width: 3rem;
+}
+
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-48 {
@@ -715,10 +723,6 @@ html, body, #root {
   width: 2rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-\[30\%\] {
   width: 30%;
 }
@@ -727,8 +731,16 @@ html, body, #root {
   width: 40%;
 }
 
-.w-3 {
-  width: 0.75rem;
+.w-full {
+  width: 100%;
+}
+
+.w-\[5\.183rem\] {
+  width: 5.183rem;
+}
+
+.w-\[5\.813rem\] {
+  width: 5.813rem;
 }
 
 .min-w-\[11\.25rem\] {
@@ -737,6 +749,10 @@ html, body, #root {
 
 .max-w-\[45\.125rem\] {
   max-width: 45.125rem;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .flex-auto {
@@ -783,6 +799,11 @@ html, body, #root {
   justify-content: space-between;
 }
 
+.gap-x-2 {
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
 .gap-x-4 {
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
@@ -795,16 +816,6 @@ html, body, #root {
 
 .gap-y-8 {
   row-gap: 2rem;
-}
-
-.gap-x-5 {
-  -webkit-column-gap: 1.25rem;
-          column-gap: 1.25rem;
-}
-
-.gap-x-2 {
-  -webkit-column-gap: 0.5rem;
-          column-gap: 0.5rem;
 }
 
 .self-center {
@@ -839,16 +850,16 @@ html, body, #root {
   border-radius: 9999px;
 }
 
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
 .rounded-sm {
   border-radius: 0.125rem;
 }
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
 }
 
 .border-t {
@@ -982,6 +993,10 @@ html, body, #root {
   line-height: 2rem;
 }
 
+.text-\[0\.688rem\] {
+  font-size: 0.688rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -999,14 +1014,6 @@ html, body, #root {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[0-688rem\] {
-  font-size: 0-688rem;
-}
-
-.text-\[0\.688rem\] {
-  font-size: 0.688rem;
 }
 
 .font-semibold {
@@ -1044,12 +1051,12 @@ html, body, #root {
   --tw-text-opacity: 0.7;
 }
 
-.opacity-70 {
-  opacity: 0.7;
-}
-
 .opacity-0 {
   opacity: 0;
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .line-clamp-2 {
@@ -1082,14 +1089,6 @@ html, body, #root {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
-}
-
-.group:hover .group-hover\:visible {
-  visibility: visible;
-}
-
-.group:hover .group-hover\:block {
-  display: block;
 }
 
 .group:hover .group-hover\:flex {
