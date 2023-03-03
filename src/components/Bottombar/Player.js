@@ -19,7 +19,9 @@ const Player = () => {
   }, [current]);
 
   useEffect(() => {
-    !playing ? controls.pause() : controls.play();
+    if(playing){
+      controls.play()
+    }
   }, [playing]);
 
   useEffect(() => {

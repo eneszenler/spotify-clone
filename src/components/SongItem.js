@@ -20,7 +20,7 @@ const SongItem = ({item}) => {
 
   const updateCurrent = () => {
     dispatch(setCurrent(item));
-    dispatch(setPlaying(!playing));
+    dispatch(setPlaying(true));
   };
 
   return (
