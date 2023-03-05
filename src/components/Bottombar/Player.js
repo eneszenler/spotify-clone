@@ -1,12 +1,17 @@
 import CustomRange from "components/CustomRange";
+import FullScreenPlayer from "components/FullScreenPlayer";
 import {Icon} from "Icons";
-import {useEffect, useMemo} from "react";
+import {useEffect, useMemo, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useAudio} from "react-use";
+import {useAudio, useFullscreen, useToggle} from "react-use";
 import {setControls, setPlaying, setSidebar} from "stores/player";
 import {secondsToTime} from "utils";
 
 const Player = () => {
+  const fsRef = useRef();
+  const [show, toggle] = useToggle(false);
+  const isFullScreen = useFullscreen(fsRef, show, {onClose: () => toggle(false)});
+
   const dispatch = useDispatch();
   const {current, sidebar, playing} = useSelector((state) => state.player);
 
@@ -19,8 +24,8 @@ const Player = () => {
   }, [current]);
 
   useEffect(() => {
-    if(playing){
-      controls.play()
+    if (playing) {
+      controls.play();
     }
   }, [playing]);
 
@@ -74,26 +79,39 @@ const Player = () => {
       </div>
       <div className="max-w-[45.125rem] w-[40%] px-4 flex flex-col items-center">
         <div className="flex items-center gap-x-2">
-          <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+          <button
+            disabled={!current}
+            className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
+          >
             <Icon name="shuffle" size={16} />
           </button>
-          <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+          <button
+            disabled={!current}
+            className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
+          >
             <Icon name="playerPrev" size={16} />
           </button>
           <button
             onClick={controls[state?.playing ? "pause" : "play"]}
-            className="w-8 h-8 flex bg-white items-center justify-center text-black rounded-full hover:scale-[1.06]"
+            disabled={!current}
+            className="w-8 h-8 flex bg-white items-center justify-center text-black rounded-full hover:scale-[1.06] disabled:bg-opacity-50"
           >
             <Icon name={state?.playing ? "pause" : "play"} size={16} />
           </button>
-          <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+          <button
+            disabled={!current}
+            className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
+          >
             <Icon name="playerNext" size={16} />
           </button>
-          <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+          <button
+            disabled={!current}
+            className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
+          >
             <Icon name="repeat" size={16} />
           </button>
         </div>
-        <div className="w-full flex items-center gap-x-2">
+        <div className="w-full flex items-center mt-1.5 gap-x-2">
           {audio}
           <div className="text-[0.688rem] text-white text-opacity-70">{secondsToTime(state?.time)}</div>
           <CustomRange
@@ -134,10 +152,18 @@ const Player = () => {
             }}
           />
         </div>
-
-        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+        <button
+          disabled={!current}
+          onClick={toggle}
+          className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-30"
+        >
           <Icon name="fullScreen" size={16} />
         </button>
+      </div>
+      <div ref={fsRef}>
+        {isFullScreen && (
+          <FullScreenPlayer toggle={toggle} state={state} controls={controls} volumeIcon={volumeIcon} />
+        )}
       </div>
     </div>
   );
