@@ -4,8 +4,9 @@ import {Icon} from "Icons";
 import {useEffect, useMemo, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useAudio, useFullscreen, useToggle} from "react-use";
-import {setControls, setPlaying, setSidebar} from "stores/player";
+import {setControls, setCurrent, setPlaying, setSidebar} from "stores/player";
 import {secondsToTime} from "utils";
+import tracks from "data/tracks";
 
 const Player = () => {
   const fsRef = useRef();
@@ -43,6 +44,23 @@ const Player = () => {
     if (state.volume >= 0.33 && state.volume <= 0.66) return "volumeNormal";
     return "volumeFull";
   }, [state.volume, state.muted]);
+
+  const handleChangeTrack = (deal) => {
+    if (deal === "next") {
+      if (current.id >= tracks.length) {
+        dispatch(setCurrent(tracks[0]));
+      } else {
+        dispatch(setCurrent(tracks[current.id]));
+      }
+    } else {
+      if (current.id === 1) {
+        dispatch(setCurrent(tracks[tracks.length - 1]));
+        console.log("asd");
+      } else {
+        dispatch(setCurrent(tracks[current.id - 2]));
+      }
+    }
+  };
 
   return (
     <div className="flex px-4 justify-between items-center h-full">
@@ -86,6 +104,7 @@ const Player = () => {
             <Icon name="shuffle" size={16} />
           </button>
           <button
+            onClick={() => handleChangeTrack("previous")}
             disabled={!current}
             className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
           >
@@ -99,6 +118,7 @@ const Player = () => {
             <Icon name={state?.playing ? "pause" : "play"} size={16} />
           </button>
           <button
+            onClick={() => handleChangeTrack("next")}
             disabled={!current}
             className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
           >

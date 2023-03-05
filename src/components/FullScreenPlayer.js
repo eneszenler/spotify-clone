@@ -1,10 +1,30 @@
+import tracks from "data/tracks";
 import {Icon} from "Icons";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrent} from "stores/player";
 import {secondsToTime} from "utils";
 import CustomRange from "./CustomRange";
 
 const FullScreenPlayer = ({toggle, state, controls, volumeIcon}) => {
   const {current} = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+
+  const handleChangeTrack = (deal) => {
+    if (deal === "next") {
+      if (current.id >= tracks.length) {
+        dispatch(setCurrent(tracks[0]));
+      } else {
+        dispatch(setCurrent(tracks[current.id]));
+      }
+    } else {
+      if (current.id === 1) {
+        dispatch(setCurrent(tracks[tracks.length - 1]));
+        console.log("asd");
+      } else {
+        dispatch(setCurrent(tracks[current.id - 2]));
+      }
+    }
+  };
 
   return (
     <div
@@ -39,7 +59,6 @@ const FullScreenPlayer = ({toggle, state, controls, volumeIcon}) => {
           </div>
         </div>
         <div className="w-full flex items-center mb-3 gap-x-2">
-          {/* {audio} */}
           <div className="text-[0.688rem] text-white text-opacity-70">{secondsToTime(state?.time)}</div>
           <CustomRange
             step={0.1}
@@ -65,6 +84,7 @@ const FullScreenPlayer = ({toggle, state, controls, volumeIcon}) => {
             </button>
             <button
               disabled={!current}
+              onClick={() => handleChangeTrack("previous")}
               className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
             >
               <Icon name="playerPrev" size={24} />
@@ -78,6 +98,7 @@ const FullScreenPlayer = ({toggle, state, controls, volumeIcon}) => {
             </button>
             <button
               disabled={!current}
+              onClick={() => handleChangeTrack("next")}
               className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100 disabled:text-opacity-50"
             >
               <Icon name="playerNext" size={24} />
