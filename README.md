@@ -12,6 +12,8 @@ Included Packages
 
 The demo of its latest version
 
+https://spotify-clone-qhw38p94g-eneszenler.vercel.app
+
 ## Screenshots
 
 <img width="1680" alt="image" src="https://user-images.githubusercontent.com/91543268/222983292-dfb31827-b4e1-4c37-879f-d19a5faae858.png">
